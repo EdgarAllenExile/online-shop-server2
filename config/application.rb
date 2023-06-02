@@ -30,4 +30,11 @@ module OnlineShopServer
     # Don't generate system test files.
     config.generators.system_tests = nil
   end
+
+  config.middleware.insert_before 0, Rack::Cors do
+    allow do
+      origins '*'
+      resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options]
+    end
+  end
 end
